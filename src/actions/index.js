@@ -2,11 +2,12 @@
  * Created by skynetsaa on 13.02.18.
  */
 let nextTodoId = 0
-export const addTodo = text => {
+export const addTodo = (title, description) => {
 	return {
 		type: 'ADD_TODO',
 		id: nextTodoId++,
-		text
+		title,
+		description,
 	}
 }
 

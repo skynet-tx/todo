@@ -3,33 +3,53 @@
  */
 import React from 'react'
 import { connect } from 'react-redux'
+import { Input, Message, Button } from 'semantic-ui-react'
+
 import { addTodo } from '../actions'
 
 let AddTodo = ({ dispatch }) => {
-	let input
+	let title,description;
 
 	return (
-		<div>
+		<Message>
 			<form
 				onSubmit={e => {
 					e.preventDefault()
-					if (!input.value.trim()) {
+					let titleVal = title.inputRef.value;
+					let descriptionVal = description.inputRef.value;
+					if (!titleVal.trim() && !descriptionVal.trim()) {
 						return
 					}
-					dispatch(addTodo(input.value))
-					input.value = ''
+					dispatch(addTodo(titleVal, descriptionVal))
+
+					title.inputRef.value = '';
+					description.inputRef.value = '';
 				}}
 			>
-				<input
+				<Input
 					ref={node => {
-						input = node
+						title = node
 					}}
+					placeholder='Type title'
 				/>
-				<button type="submit">
-					Add Todo
-				</button>
+				<Input
+					name="description"
+					ref={node => {
+						description = node
+					}}
+					placeholder='Type Description'
+				/>
+
+				<Button
+					inverted
+					type="submit"
+					content='Add Todo'
+					floated="right"
+					icon='add'
+					color='green'
+					labelPosition='right' />
 			</form>
-		</div>
+		</Message>
 	)
 }
 AddTodo = connect()(AddTodo)
