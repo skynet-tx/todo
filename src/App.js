@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import { Container, Advertisement } from 'semantic-ui-react'
 
-import TodoList from './Components/TodoList'
+import TodoApp from './Components'
 
 class App extends Component {
 	render() {
 		return (
 			<Container text>
 				<Advertisement unit='leaderboard' test='TODO LIST' />
-				<TodoList/>
+				<TodoApp/>
 			</Container>
 		);
 	}
